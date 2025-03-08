@@ -1,0 +1,52 @@
+# Task Management Program
+
+def main():
+    # Step 1: Create a checklist of tasks
+    checklist = []
+    completed_tasks = []
+    incomplete_tasks = []
+
+    # Handling invalid input for the number of tasks
+    try:
+        num_tasks = int(input("Enter the number of tasks for today: "))
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+    
+    for _ in range(num_tasks):
+        task = input("Enter task: ").strip()
+        checklist.append(task)
+
+    print("\nYour checklist for today:")
+    for i, task in enumerate(checklist, start=1):
+        print(f"{i}. {task}")
+
+    # Step 2: Mark tasks as completed or incomplete
+    print("\nMark tasks as completed or incomplete")
+    for task in checklist:
+        status = input(f"Did you complete '{task}'? (yes/no): ").strip().lower()
+        if status == "yes":
+            completed_tasks.append(task)
+        elif status == "no":
+            incomplete_tasks.append(task)
+        else:
+            print("Invalid input. Marking as incomplete by default.")
+            incomplete_tasks.append(task)
+
+    # Step 3: Display the categorized tasks
+    print("\nCompleted Tasks:")
+    if completed_tasks:
+        for task in completed_tasks:
+            print(f"✔ {task}")
+    else:
+        print("No tasks completed today.")
+
+    print("\nIncomplete Tasks:")
+    if incomplete_tasks:
+        for task in incomplete_tasks:
+            print(f"✘ {task}")
+    else:
+        print("All tasks completed! Great job!")
+
+if __name__ == "__main__":
+    main()
